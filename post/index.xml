@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Tohka</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on Tohka</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Sep 2023 16:07:28 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Note-Gigahorse</title>
+      <link>http://localhost:1313/post/note-gigahorse/</link>
+      <pubDate>Sat, 09 Sep 2023 16:07:28 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/note-gigahorse/</guid>
+      <description>智能合约反编译研究一直是近年来比较关注的问题。这是由于Solidity的语言特性，其字节码的语义信息相对于Java这种语义丰富的字节码来说比较匮乏，给反编译带来了不小的挑战。
+为此，作者开发了名为Gigahorse的工具链，可以将字节码反编译成高级中间表示的3-address code，这种表示下可以使得字节码的原先的隐式数据流和控制流依赖关系显式化。
+Gigahorse是当前在智能合约反编译领域分析精度和完整性最高的反编译器（仅次于后来的该团队进一步开发Elipmoc），远超Vandal和Porosity反编译器。而实现的关键则是其用了声明式、基于逻辑的反编译（具体含义将在下文介绍）。</description>
+    </item>
+    
+  </channel>
+</rss>
