@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Tohka</title>
-    <link>https://example.org/post/</link>
-    <description>Recent content in Posts on Tohka</description>
+    <title>Decompile on Tohka</title>
+    <link>https://example.org/categories/decompile/</link>
+    <description>Recent content in Decompile on Tohka</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Sep 2023 16:07:28 +0800</lastBuildDate><atom:link href="https://example.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Sep 2023 16:07:28 +0800</lastBuildDate><atom:link href="https://example.org/categories/decompile/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Paper-以太坊智能合约的高级反编译</title>
       <link>https://example.org/post/paper-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%AB%98%E7%BA%A7%E5%8F%8D%E7%BC%96%E8%AF%91/</link>
@@ -21,20 +21,6 @@ Smart Contract Analysis 智能合约的分析或验证可以在源代码或字�
 Design 接下来我们来看看Elipmoc的具体设计 反编译的大致步骤可以总结为：
 Disassembly：反汇编并识别基本块 Local Analyses：对基本块的堆栈进行局部分析 Whole-Contract Analysis：对整个合约进行上下文和流敏感的数据流分析 Transactional Sensitivity：交易上下文敏感分析 Function Reconstruction：函数重建，以Private函数重建为主 RTL Translation：生成TAC(Three Address Code) Source unparser：生成伪代码 这篇论文重点介绍了Transactional Context Sensitivity和Private Function Reconstuction部分（如果对反编译的其他部分感兴趣，可以在Gigahorse论文中找到详细介绍）下面让我们来看看
 Transactional Context Sensitivity 作者为智能合约的执行模型专门设计了一种新的称为Transactional Context Sensitivity的上下文敏感策略，与为函数式[Shivers 1991]或命令式和面向对象程序[Milanova 2005]设计的上下文敏感性有很大不同。Transactional Context Sensitivity的独特之处在于分析智能合约的同时保留了Transaction中的有效信息（Public函数签名）并且启发式地调整本地上下文。 Transactional Context Sensitivity的上下文由两部分组成：</description>
-    </item>
-    
-    <item>
-      <title>九月杂记</title>
-      <link>https://example.org/post/%E4%B9%9D%E6%9C%88%E6%9D%82%E8%AE%B0/</link>
-      <pubDate>Tue, 19 Sep 2023 16:07:28 +0800</pubDate>
-      
-      <guid>https://example.org/post/%E4%B9%9D%E6%9C%88%E6%9D%82%E8%AE%B0/</guid>
-      <description>蝉鸣渐远，秋意转浓。
-最近我常坐在图书馆靠窗的座位，每当黄昏时分，喜欢抬头向外张望，最爱将目光停留在生活区。宿舍楼天台晾晒的被褥在夕阳下朦胧着，虽隔着千米之外，仍可切身感受到那份温暖柔软。除此之外，我也爱看生活区的学生，他们有的三五成群，有的独自快步走着，每个人都有着自己独特的想法。就这样在远处单纯的观察着世界，也不失为一件趣事。
-三年前，我曾为了一个问题——“什么是幸福” 而寻求答案，彼时的我还能有些闲情雅致读读闲书。我第一个问的人是小说家 米兰昆德拉，他没有直接告诉我答案，而是和我畅聊“轻”与“重”的问题，在几次的交谈中，他从未提及幸福一词，而是说着“负担越重，我们的生命就越贴近大地，它就越真实存在”类似的话，而我则直言不想将幸福建构的太复杂，便接着寻找。辗转几人间，无果。最后我到了季老的院子，问季老，不语，只是拿水壶浇着那夹竹桃。待走近一些，扑鼻的是一阵幽香，入目的是绿蜡似的叶子和红霞或白雪似的花朵，立刻就感觉到仿佛走进自己的家门口，大有宾至如归之感。这份安心感带来的幸福，我仿佛在这找到了答案。
-最终我以“拥有对生活的掌控，并足够沉浸于生活本身”这句话结束了这个问题。
-虽然答案已经找到，但实际操作的时候还缺少一定的“术”而遇到困难。一进入大学，面临无数的选项，这种掌控就很难继续维持下去。失去了掌控，维持不了平衡，在期望得到人生路径最优解的过程中远离了生活本身。说是最优解，实际上也不过是单纯在大脑里用少量的条件进行模拟后的结果，实在是相当不理性的行为。回想第一次学数学建模的时候，遇到一个使用层次分析法选择报考大学的案例，在住宿、饮食、学习氛围、学校层次等多个方面按照不同的权重进行分析。初次看到以这种量化的方式去做决策让我着实有些耳目一新，这样也许可以避免很多非理性的因素使决策更加准确。要是能顺道将情绪量化，应该挺有意思的吧。
-虽大学已过半，学业水平未曾精进几分，也因此失去过一些机会，所幸对自身的认知是多了几分，倒也算值当了。</description>
     </item>
     
   </channel>

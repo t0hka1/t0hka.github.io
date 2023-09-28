@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.118.2">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://example.org/post/paper-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%AB%98%E7%BA%A7%E5%8F%8D%E7%BC%96%E8%AF%91/" />
+  <link rel="canonical" href="https://example.org/post/paper-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%AB%98%E7%BA%A7%E5%8F%8D%E7%BC%96%E8%AF%91/" /><link rel="alternate" type="application/atom+xml" href="https://example.org/index.xml" title="Tohka">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/example.org\/"
+      },
+      "articleSection" : "post",
+      "name" : "Paper-以太坊智能合约的高级反编译",
+      "headline" : "Paper-以太坊智能合约的高级反编译",
+      "description" : "今天分享一篇来自OOPSLA 2022的论文 \u0026ldquo;Elipmoc: Advanced Decompilation of Ethereum Smart Contracts\u0026rdquo;，这篇论文是\u0026quot;Gigahorse: Thorough, Declarative Decompilation of Smart Contracts\u0026quot;(ICSE 2019)的精神续作\nIntro 以太坊上智能合约的反编译是一直是一个很大的挑战，现有的方法缺乏完整性、精确性或可拓展性。 为此，作者开发了一种名为Elipmoc的新一代反编译器，它基于Gigahorse反编译器并进行了扩展。作者通过采用多种高精度技术对其进行了升级和优化。\nBackground 我们先来看Elipmoc存在的背景。\nSmart Contract 以太坊是现存最大的可编程区块链，而智能合约就是运行在以太坊链上的一个程序。智能合约主要使用高级语言Solidity进行编写，它可以被编译成在以太坊虚拟机（EVM）上执行的低级字节码表示。这个字节码可以被部署到区块链并持久化在一个地址上。任何人都可以公开访问并与之交互。 智能合约的执行本质是交易性的。交易是由帐户发出的带密码学签名的指令，对合约的单次调用即可视为一次交易。每个对合约的外部调用都需要选择一个入口点（A Public Function），调用者可以通过在交易信息中添加函数签名来进行选择。 EVM字节码分析的挑战在于其低级的本质和非传统的设计。例如，它没有调用，只有动态跳转，并且对指令地址、函数参数、返回值和局部操作数使用单一的混合栈。\nSmart Contract Analysis 智能合约的分析或验证可以在源代码或字节码级别进行。字节码级别的分析需要一个lifter（将bytecode提升为3 address code），比如Elipmoc。目前，大多数已部署的合约都没有发布源代码。 即使源代码可用，字节码级别的自动化分析也是有益的甚至必不可少的。大多数合约源代码会包含用于关键功能的内联汇编，因此反编译对于恢复智能合约的高级语义起着非常重要的功能。 更重要的是，字节码级别分析保证了一定的兼容性。由于Solidity语言经常以语法不兼容的方式变化，这导致了依赖于语言版本的源代码级别分析工具显得非常脆弱。\nDesign 接下来我们来看看Elipmoc的具体设计 反编译的大致步骤可以总结为：\nDisassembly：反汇编并识别基本块 Local Analyses：对基本块的堆栈进行局部分析 Whole-Contract Analysis：对整个合约进行上下文和流敏感的数据流分析 Transactional Sensitivity：交易上下文敏感分析 Function Reconstruction：函数重建，以Private函数重建为主 RTL Translation：生成TAC(Three Address Code) Source unparser：生成伪代码 这篇论文重点介绍了Transactional Context Sensitivity和Private Function Reconstuction部分（如果对反编译的其他部分感兴趣，可以在Gigahorse论文中找到详细介绍）下面让我们来看看\nTransactional Context Sensitivity 作者为智能合约的执行模型专门设计了一种新的称为Transactional Context Sensitivity的上下文敏感策略，与为函数式[Shivers 1991]或命令式和面向对象程序[Milanova 2005]设计的上下文敏感性有很大不同。Transactional Context Sensitivity的独特之处在于分析智能合约的同时保留了Transaction中的有效信息（Public函数签名）并且启发式地调整本地上下文。 Transactional Context Sensitivity的上下文由两部分组成：",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-09-25 16:07:28 \u002b0800 CST",
+      "dateModified" : "2023-09-25 16:07:28 \u002b0800 CST",
+      "url" : "https:\/\/example.org\/post\/paper-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%AB%98%E7%BA%A7%E5%8F%8D%E7%BC%96%E8%AF%91\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Paper-以太坊智能合约的高级反编译</title>
+  <meta property="og:title" content="Paper-以太坊智能合约的高级反编译" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="今天分享一篇来自OOPSLA 2022的论文 &amp;ldquo;Elipmoc: Advanced Decompilation of Ethereum Smart Contracts&amp;rdquo;，这篇论文是&amp;quot;Gigahorse: Thorough, Declarative Decompilation of Smart Contracts&amp;quot;(ICSE 2019)的精神续作
+Intro 以太坊上智能合约的反编译是一直是一个很大的挑战，现有的方法缺乏完整性、精确性或可拓展性。 为此，作者开发了一种名为Elipmoc的新一代反编译器，它基于Gigahorse反编译器并进行了扩展。作者通过采用多种高精度技术对其进行了升级和优化。
+Background 我们先来看Elipmoc存在的背景。
+Smart Contract 以太坊是现存最大的可编程区块链，而智能合约就是运行在以太坊链上的一个程序。智能合约主要使用高级语言Solidity进行编写，它可以被编译成在以太坊虚拟机（EVM）上执行的低级字节码表示。这个字节码可以被部署到区块链并持久化在一个地址上。任何人都可以公开访问并与之交互。 智能合约的执行本质是交易性的。交易是由帐户发出的带密码学签名的指令，对合约的单次调用即可视为一次交易。每个对合约的外部调用都需要选择一个入口点（A Public Function），调用者可以通过在交易信息中添加函数签名来进行选择。 EVM字节码分析的挑战在于其低级的本质和非传统的设计。例如，它没有调用，只有动态跳转，并且对指令地址、函数参数、返回值和局部操作数使用单一的混合栈。
+Smart Contract Analysis 智能合约的分析或验证可以在源代码或字节码级别进行。字节码级别的分析需要一个lifter（将bytecode提升为3 address code），比如Elipmoc。目前，大多数已部署的合约都没有发布源代码。 即使源代码可用，字节码级别的自动化分析也是有益的甚至必不可少的。大多数合约源代码会包含用于关键功能的内联汇编，因此反编译对于恢复智能合约的高级语义起着非常重要的功能。 更重要的是，字节码级别分析保证了一定的兼容性。由于Solidity语言经常以语法不兼容的方式变化，这导致了依赖于语言版本的源代码级别分析工具显得非常脆弱。
+Design 接下来我们来看看Elipmoc的具体设计 反编译的大致步骤可以总结为：
+Disassembly：反汇编并识别基本块 Local Analyses：对基本块的堆栈进行局部分析 Whole-Contract Analysis：对整个合约进行上下文和流敏感的数据流分析 Transactional Sensitivity：交易上下文敏感分析 Function Reconstruction：函数重建，以Private函数重建为主 RTL Translation：生成TAC(Three Address Code) Source unparser：生成伪代码 这篇论文重点介绍了Transactional Context Sensitivity和Private Function Reconstuction部分（如果对反编译的其他部分感兴趣，可以在Gigahorse论文中找到详细介绍）下面让我们来看看
+Transactional Context Sensitivity 作者为智能合约的执行模型专门设计了一种新的称为Transactional Context Sensitivity的上下文敏感策略，与为函数式[Shivers 1991]或命令式和面向对象程序[Milanova 2005]设计的上下文敏感性有很大不同。Transactional Context Sensitivity的独特之处在于分析智能合约的同时保留了Transaction中的有效信息（Public函数签名）并且启发式地调整本地上下文。 Transactional Context Sensitivity的上下文由两部分组成：" />
+  <meta name="description" content="今天分享一篇来自OOPSLA 2022的论文 &amp;ldquo;Elipmoc: Advanced Decompilation of Ethereum Smart Contracts&amp;rdquo;，这篇论文是&amp;quot;Gigahorse: Thorough, Declarative Decompilation of Smart Contracts&amp;quot;(ICSE 2019)的精神续作
+Intro 以太坊上智能合约的反编译是一直是一个很大的挑战，现有的方法缺乏完整性、精确性或可拓展性。 为此，作者开发了一种名为Elipmoc的新一代反编译器，它基于Gigahorse反编译器并进行了扩展。作者通过采用多种高精度技术对其进行了升级和优化。
+Background 我们先来看Elipmoc存在的背景。
+Smart Contract 以太坊是现存最大的可编程区块链，而智能合约就是运行在以太坊链上的一个程序。智能合约主要使用高级语言Solidity进行编写，它可以被编译成在以太坊虚拟机（EVM）上执行的低级字节码表示。这个字节码可以被部署到区块链并持久化在一个地址上。任何人都可以公开访问并与之交互。 智能合约的执行本质是交易性的。交易是由帐户发出的带密码学签名的指令，对合约的单次调用即可视为一次交易。每个对合约的外部调用都需要选择一个入口点（A Public Function），调用者可以通过在交易信息中添加函数签名来进行选择。 EVM字节码分析的挑战在于其低级的本质和非传统的设计。例如，它没有调用，只有动态跳转，并且对指令地址、函数参数、返回值和局部操作数使用单一的混合栈。
+Smart Contract Analysis 智能合约的分析或验证可以在源代码或字节码级别进行。字节码级别的分析需要一个lifter（将bytecode提升为3 address code），比如Elipmoc。目前，大多数已部署的合约都没有发布源代码。 即使源代码可用，字节码级别的自动化分析也是有益的甚至必不可少的。大多数合约源代码会包含用于关键功能的内联汇编，因此反编译对于恢复智能合约的高级语义起着非常重要的功能。 更重要的是，字节码级别分析保证了一定的兼容性。由于Solidity语言经常以语法不兼容的方式变化，这导致了依赖于语言版本的源代码级别分析工具显得非常脆弱。
+Design 接下来我们来看看Elipmoc的具体设计 反编译的大致步骤可以总结为：
+Disassembly：反汇编并识别基本块 Local Analyses：对基本块的堆栈进行局部分析 Whole-Contract Analysis：对整个合约进行上下文和流敏感的数据流分析 Transactional Sensitivity：交易上下文敏感分析 Function Reconstruction：函数重建，以Private函数重建为主 RTL Translation：生成TAC(Three Address Code) Source unparser：生成伪代码 这篇论文重点介绍了Transactional Context Sensitivity和Private Function Reconstuction部分（如果对反编译的其他部分感兴趣，可以在Gigahorse论文中找到详细介绍）下面让我们来看看
+Transactional Context Sensitivity 作者为智能合约的执行模型专门设计了一种新的称为Transactional Context Sensitivity的上下文敏感策略，与为函数式[Shivers 1991]或命令式和面向对象程序[Milanova 2005]设计的上下文敏感性有很大不同。Transactional Context Sensitivity的独特之处在于分析智能合约的同时保留了Transaction中的有效信息（Public函数签名）并且启发式地调整本地上下文。 Transactional Context Sensitivity的上下文由两部分组成：" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
+  
+
+  
+    <style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{font-weight:600;text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{text-align:center}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}}@media screen and (max-width:48em){.posts-category{display:none}}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="Tohka">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="header-title">
+    <a href="/"
+      >Velitas</a
+    >
+  </div>
+  <div class="header-subtitle"></div>
+</header>
+<div class="row end-md center-xs header-items">
+  
+</div>
+<div class="row end-xs">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Paper-以太坊智能合约的高级反编译</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-09-25 16:07:28 CST">
+                25 Sep 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <p><img src="../Attachment/Pasted%20image%2020230928234622.png" alt="">
+今天分享一篇来自OOPSLA 2022的论文 &ldquo;Elipmoc: Advanced Decompilation of Ethereum Smart Contracts&rdquo;，这篇论文是&quot;Gigahorse: Thorough, Declarative Decompilation of Smart Contracts&quot;(ICSE 2019)的精神续作</p>
+<h2 id="intro">Intro</h2>
+<p>以太坊上智能合约的反编译是一直是一个很大的挑战，现有的方法缺乏完整性、精确性或可拓展性。
+为此，作者开发了一种名为Elipmoc的新一代反编译器，它基于Gigahorse反编译器并进行了扩展。作者通过采用多种高精度技术对其进行了升级和优化。</p>
+<h2 id="background">Background</h2>
+<p>我们先来看Elipmoc存在的背景。</p>
+<h3 id="smart-contract">Smart Contract</h3>
+<p>以太坊是现存最大的可编程区块链，而智能合约就是运行在以太坊链上的一个程序。智能合约主要使用高级语言Solidity进行编写，它可以被编译成在以太坊虚拟机（EVM）上执行的低级字节码表示。这个字节码可以被部署到区块链并持久化在一个地址上。任何人都可以公开访问并与之交互。
+智能合约的执行本质是交易性的。交易是由帐户发出的带密码学签名的指令，对合约的单次调用即可视为一次交易。每个对合约的外部调用都需要选择一个入口点（A Public Function），调用者可以通过在交易信息中添加函数签名来进行选择。
+EVM字节码分析的挑战在于其低级的本质和非传统的设计。例如，它没有调用，只有动态跳转，并且对指令地址、函数参数、返回值和局部操作数使用单一的混合栈。</p>
+<h3 id="smart-contract-analysis">Smart Contract Analysis</h3>
+<p>智能合约的分析或验证可以在源代码或字节码级别进行。字节码级别的分析需要一个lifter（将bytecode提升为3 address code），比如Elipmoc。目前，大多数已部署的合约都没有发布源代码。
+即使源代码可用，字节码级别的自动化分析也是有益的甚至必不可少的。大多数合约源代码会包含用于关键功能的内联汇编，因此反编译对于恢复智能合约的高级语义起着非常重要的功能。
+更重要的是，字节码级别分析保证了一定的兼容性。由于Solidity语言经常以语法不兼容的方式变化，这导致了依赖于语言版本的源代码级别分析工具显得非常脆弱。</p>
+<h2 id="design">Design</h2>
+<p>接下来我们来看看Elipmoc的具体设计
+<img src="../Attachment/Pasted%20image%2020230928234654.png" alt="">
+反编译的大致步骤可以总结为：</p>
+<ol>
+<li>Disassembly：反汇编并识别基本块</li>
+<li>Local Analyses：对基本块的堆栈进行局部分析</li>
+<li>Whole-Contract Analysis：对整个合约进行上下文和流敏感的数据流分析</li>
+<li>Transactional Sensitivity：交易上下文敏感分析</li>
+<li>Function Reconstruction：函数重建，以Private函数重建为主</li>
+<li>RTL Translation：生成TAC(Three Address Code)</li>
+<li>Source unparser：生成伪代码</li>
+</ol>
+<p>这篇论文重点介绍了Transactional Context Sensitivity和Private Function Reconstuction部分（如果对反编译的其他部分感兴趣，可以在Gigahorse论文中找到详细介绍）下面让我们来看看</p>
+<h3 id="transactional-context-sensitivity">Transactional Context Sensitivity</h3>
+<p>作者为智能合约的执行模型专门设计了一种新的称为Transactional Context Sensitivity的上下文敏感策略，与为函数式[<a href="https://www.ccs.neu.edu/home/shivers/papers/diss.pdf">Shivers 1991</a>]或命令式和面向对象程序[<a href="http://web.cse.ohio-state.edu/presto/pubs/tosem05.pdf">Milanova 2005</a>]设计的上下文敏感性有很大不同。Transactional Context Sensitivity的独特之处在于分析智能合约的同时保留了Transaction中的有效信息（Public函数签名）并且启发式地调整本地上下文。
+<img src="../Attachment/Pasted%20image%2020230928234705.png" alt="">
+Transactional Context Sensitivity的上下文由两部分组成：</p>
+<ol>
+<li>Public函数上下文部分，代表transaction的入口。对应上图ctx中的第一个元素，初始值为NULL</li>
+<li>Private函数上下文部分，包含n个最可能的Private函数调用点或返回点。对应上图ctx中的第二个元素，初始值为[NULL, NULL]</li>
+</ol>
+<p>通过MERGE函数，以调用者的信息作为输入，则可以为被调用者生成一个新的上下文
+Merge函数中的PrivateCall和PrivateReturn的匹配方式如下图所示
+<img src="../Attachment/Pasted%20image%2020230928234744.png" alt=""></p>
+<h3 id="privatefunction-reconstuction">(Private)Function Reconstuction</h3>
+<p>Private 函数的重建是一个很难的问题，涉及从EVM字节码中识别Private函数，具体实践需要用到两个独立的算法，一个用于推断函数边界，另一个用于推断函数的参数和返回值。</p>
+<h3 id="function-boundary-inference">Function Boundary Inference</h3>
+<p>Elipmocz在推断Private函数边界时，会首先通过启发式的算法找到函数末尾的Return点，并且认为最初设置返回地址的块到Return点的每一个调用链都可能匹配的函数。之后将这些可能的函数根据调用栈的深度进行排序
+<img src="../Attachment/Pasted%20image%2020230928234753.png" alt="">
+函数边界的识别提供函数间的控制流跳转信息，为TAC的生成和Private函数的重建有着很大的帮助。</p>
+<p><strong>函数的参数和返回值推断</strong>
+为了推断函数参数和返回值，引入了一种选择性路径敏感的算法。
+<img src="../Attachment/Pasted%20image%2020230928234802.png" alt="">
+这个核心算法能找出在函数的任意无环路径上可以被该函数弹出的所有可能的元素数量并对函数参数进行自动的推理。</p>
+<h2 id="evaluation">Evaluation</h2>
+<p>这里作者用了两个工具与Elipmoc进行对比来评估：</p>
+<ol>
+<li>领先的研究型反编译器Gigahorse。共享核心和理念允许其与Elipmoc进行深入和直接的比较</li>
+<li>领先的工业型反编译器Panoramix。Panoramix不产生CFG或者IR，需要更高级的指标来对比</li>
+</ol>
+<h3 id="comparison-to-gigahorse">Comparison to Gigahorse</h3>
+<p><img src="../Attachment/Pasted%20image%2020230928234812.png" alt="">
+为了在精确性、完整性、可拓展性三个方面进行对比评估，作者分别定义了五个指标</p>
+<ol>
+<li>Unstructured Control Flow：输出中的高级控制流无法使用结构化构造来表达（例如高级循环或条件语句）</li>
+<li>Polymorphic Jump Target：（程序内）在同一上下文下目标不唯一解析的跳转指令</li>
+<li>Unresolved Operand：输出中缺少操作数</li>
+<li>Block in Multiple Functions:属于多个函数的基本块
+5.Timeout:平均反编译时间</li>
+</ol>
+<p>可以看到Elipmoc在各个指标上都远优于Gigahorse。此外作者还改造得到了采用与Gigahorse相同上下文敏感策略的Elipmoc w/10-call版本加入对比，展示了路径敏感算法的积极作用以及更好的上下文敏感策略的影响。</p>
+<h3 id="comparision-to-panoramix">Comparision to Panoramix</h3>
+<p><img src="../Attachment/Pasted%20image%2020230928234821.png" alt="">
+与上面的指标设计不同，由于Panoramix并不显式的生成CFG或者IR，因此需要在更高级的层面来设计：</p>
+<ol>
+<li>Unique External Calls：找到的唯一调用签名的数量</li>
+<li>Unique Events：找到的唯一事件签名的数量</li>
+<li>Timeouts：超时或以其他方式报告反编译失败的合约的百分比</li>
+<li>Execution Time：平均反编译时间,以秒为单位</li>
+</ol>
+<p>上图显示了对比结果。其中最值得注意的指标是外部调用签名的数量，Elipmoc发现的数量相比Panoramix增加了67%，这展示了其高完整性。此外，Elipmoc还具有更快的速度（平均执行时间降低5倍）。Elipmoc有5%的合约超时或反编译失败，而Panoramix则占到17.9%。</p>
+<h2 id="summary">Summary</h2>
+<p>这篇论文提出了一个名为Elipmoc的以太坊字节码反编译工具。Elipmoc使用了一种新的上下文敏感（Transactional Context Sensitivity）来提供对反编译更有效的静态抽象；并使用一种路径敏感（通过路径合并实现可拓展性）的算法用于推断函数参数和返回值；以及完全上下文敏感的私有函数重建方法。与前作Gigahorse相比，在精确性、完整性、可拓展性都得到了不小的提升。</p>
+<blockquote>
+<p>论文地址：https://dl.acm.org/doi/pdf/10.1145/3527321</p>
+</blockquote>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>
