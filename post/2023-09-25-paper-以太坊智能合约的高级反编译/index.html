@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="https://example.org/post/paper-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%AB%98%E7%BA%A7%E5%8F%8D%E7%BC%96%E8%AF%91/" />
-  <link rel="canonical" href="https://example.org/post/paper-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%AB%98%E7%BA%A7%E5%8F%8D%E7%BC%96%E8%AF%91/" /><link rel="alternate" type="application/atom+xml" href="https://example.org/index.xml" title="Tohka">
+  <meta property="og:url" content="https://example.org/post/2023-09-25-paper-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%AB%98%E7%BA%A7%E5%8F%8D%E7%BC%96%E8%AF%91/" />
+  <link rel="canonical" href="https://example.org/post/2023-09-25-paper-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%AB%98%E7%BA%A7%E5%8F%8D%E7%BC%96%E8%AF%91/" /><link rel="alternate" type="application/atom+xml" href="https://example.org/index.xml" title="Tohka">
 
   <script type="application/ld+json">
   {
@@ -31,7 +31,7 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-09-25 16:07:28 \u002b0800 CST",
       "dateModified" : "2023-09-25 16:07:28 \u002b0800 CST",
-      "url" : "https:\/\/example.org\/post\/paper-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%AB%98%E7%BA%A7%E5%8F%8D%E7%BC%96%E8%AF%91\/",
+      "url" : "https:\/\/example.org\/post\/2023-09-25-paper-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%AB%98%E7%BA%A7%E5%8F%8D%E7%BC%96%E8%AF%91\/",
       "keywords" : [  ]
   }
 </script>
@@ -130,7 +130,7 @@ Transactional Context Sensitivity 作者为智能合约的执行模型专门设�
 
         <div class="post-content markdown-body">
           
-          <p><img src="../Attachment/Pasted%20image%2020230928234622.png" alt="">
+          <p><img src="./Attachment/Pasted%20image%2020230928234622.png" alt="">
 今天分享一篇来自OOPSLA 2022的论文 &ldquo;Elipmoc: Advanced Decompilation of Ethereum Smart Contracts&rdquo;，这篇论文是&quot;Gigahorse: Thorough, Declarative Decompilation of Smart Contracts&quot;(ICSE 2019)的精神续作</p>
 <h2 id="intro">Intro</h2>
 <p>以太坊上智能合约的反编译是一直是一个很大的挑战，现有的方法缺乏完整性、精确性或可拓展性。
@@ -147,7 +147,7 @@ EVM字节码分析的挑战在于其低级的本质和非传统的设计。例�
 更重要的是，字节码级别分析保证了一定的兼容性。由于Solidity语言经常以语法不兼容的方式变化，这导致了依赖于语言版本的源代码级别分析工具显得非常脆弱。</p>
 <h2 id="design">Design</h2>
 <p>接下来我们来看看Elipmoc的具体设计
-<img src="../Attachment/Pasted%20image%2020230928234654.png" alt="">
+<img src="./Attachment/Pasted%20image%2020230928234654.png" alt="">
 反编译的大致步骤可以总结为：</p>
 <ol>
 <li>Disassembly：反汇编并识别基本块</li>
@@ -161,7 +161,7 @@ EVM字节码分析的挑战在于其低级的本质和非传统的设计。例�
 <p>这篇论文重点介绍了Transactional Context Sensitivity和Private Function Reconstuction部分（如果对反编译的其他部分感兴趣，可以在Gigahorse论文中找到详细介绍）下面让我们来看看</p>
 <h3 id="transactional-context-sensitivity">Transactional Context Sensitivity</h3>
 <p>作者为智能合约的执行模型专门设计了一种新的称为Transactional Context Sensitivity的上下文敏感策略，与为函数式[<a href="https://www.ccs.neu.edu/home/shivers/papers/diss.pdf">Shivers 1991</a>]或命令式和面向对象程序[<a href="http://web.cse.ohio-state.edu/presto/pubs/tosem05.pdf">Milanova 2005</a>]设计的上下文敏感性有很大不同。Transactional Context Sensitivity的独特之处在于分析智能合约的同时保留了Transaction中的有效信息（Public函数签名）并且启发式地调整本地上下文。
-<img src="../Attachment/Pasted%20image%2020230928234705.png" alt="">
+<img src="./Attachment/Pasted%20image%2020230928234705.png" alt="">
 Transactional Context Sensitivity的上下文由两部分组成：</p>
 <ol>
 <li>Public函数上下文部分，代表transaction的入口。对应上图ctx中的第一个元素，初始值为NULL</li>
@@ -169,16 +169,16 @@ Transactional Context Sensitivity的上下文由两部分组成：</p>
 </ol>
 <p>通过MERGE函数，以调用者的信息作为输入，则可以为被调用者生成一个新的上下文
 Merge函数中的PrivateCall和PrivateReturn的匹配方式如下图所示
-<img src="../Attachment/Pasted%20image%2020230928234744.png" alt=""></p>
+<img src="./Attachment/Pasted%20image%2020230928234744.png" alt=""></p>
 <h3 id="privatefunction-reconstuction">(Private)Function Reconstuction</h3>
 <p>Private 函数的重建是一个很难的问题，涉及从EVM字节码中识别Private函数，具体实践需要用到两个独立的算法，一个用于推断函数边界，另一个用于推断函数的参数和返回值。</p>
 <h3 id="function-boundary-inference">Function Boundary Inference</h3>
 <p>Elipmocz在推断Private函数边界时，会首先通过启发式的算法找到函数末尾的Return点，并且认为最初设置返回地址的块到Return点的每一个调用链都可能匹配的函数。之后将这些可能的函数根据调用栈的深度进行排序
-<img src="../Attachment/Pasted%20image%2020230928234753.png" alt="">
+<img src="./Attachment/Pasted%20image%2020230928234753.png" alt="">
 函数边界的识别提供函数间的控制流跳转信息，为TAC的生成和Private函数的重建有着很大的帮助。</p>
 <p><strong>函数的参数和返回值推断</strong>
 为了推断函数参数和返回值，引入了一种选择性路径敏感的算法。
-<img src="../Attachment/Pasted%20image%2020230928234802.png" alt="">
+<img src="./Attachment/Pasted%20image%2020230928234802.png" alt="">
 这个核心算法能找出在函数的任意无环路径上可以被该函数弹出的所有可能的元素数量并对函数参数进行自动的推理。</p>
 <h2 id="evaluation">Evaluation</h2>
 <p>这里作者用了两个工具与Elipmoc进行对比来评估：</p>
@@ -187,7 +187,7 @@ Merge函数中的PrivateCall和PrivateReturn的匹配方式如下图所示
 <li>领先的工业型反编译器Panoramix。Panoramix不产生CFG或者IR，需要更高级的指标来对比</li>
 </ol>
 <h3 id="comparison-to-gigahorse">Comparison to Gigahorse</h3>
-<p><img src="../Attachment/Pasted%20image%2020230928234812.png" alt="">
+<p><img src="./Attachment/Pasted%20image%2020230928234812.png" alt="">
 为了在精确性、完整性、可拓展性三个方面进行对比评估，作者分别定义了五个指标</p>
 <ol>
 <li>Unstructured Control Flow：输出中的高级控制流无法使用结构化构造来表达（例如高级循环或条件语句）</li>
@@ -198,7 +198,7 @@ Merge函数中的PrivateCall和PrivateReturn的匹配方式如下图所示
 </ol>
 <p>可以看到Elipmoc在各个指标上都远优于Gigahorse。此外作者还改造得到了采用与Gigahorse相同上下文敏感策略的Elipmoc w/10-call版本加入对比，展示了路径敏感算法的积极作用以及更好的上下文敏感策略的影响。</p>
 <h3 id="comparision-to-panoramix">Comparision to Panoramix</h3>
-<p><img src="../Attachment/Pasted%20image%2020230928234821.png" alt="">
+<p><img src="./Attachment/Pasted%20image%2020230928234821.png" alt="">
 与上面的指标设计不同，由于Panoramix并不显式的生成CFG或者IR，因此需要在更高级的层面来设计：</p>
 <ol>
 <li>Unique External Calls：找到的唯一调用签名的数量</li>
