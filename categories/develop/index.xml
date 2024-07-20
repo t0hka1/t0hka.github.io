@@ -6,14 +6,14 @@
     <description>Recent content in Develop on Tohka</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Dec 2023 16:07:28 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jul 2024 01:07:28 +0800</lastBuildDate>
     <atom:link href="https://example.org/categories/develop/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>模板解析</title>
       <link>https://example.org/post/%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Fri, 15 Dec 2023 16:07:28 +0800</pubDate>
+      <pubDate>Sun, 21 Jul 2024 01:07:28 +0800</pubDate>
       <guid>https://example.org/post/%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90/</guid>
-      <description></description>
+      <description>测试</description>
     </item>
   </channel>
 </rss>
