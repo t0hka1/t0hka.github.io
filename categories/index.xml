@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Tohka</title>
-    <link>https://example.org/categories/</link>
+    <link>https://t0hka.top/categories/</link>
     <description>Recent content in Categories on Tohka</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 21 Jul 2024 01:07:28 +0800</lastBuildDate>
-    <atom:link href="https://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://t0hka.top/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Develop</title>
-      <link>https://example.org/categories/develop/</link>
+      <link>https://t0hka.top/categories/develop/</link>
       <pubDate>Sun, 21 Jul 2024 01:07:28 +0800</pubDate>
-      <guid>https://example.org/categories/develop/</guid>
+      <guid>https://t0hka.top/categories/develop/</guid>
       <description></description>
     </item>
     <item>
       <title>杂谈</title>
-      <link>https://example.org/categories/%E6%9D%82%E8%B0%88/</link>
+      <link>https://t0hka.top/categories/%E6%9D%82%E8%B0%88/</link>
       <pubDate>Sun, 31 Dec 2023 23:07:28 +0800</pubDate>
-      <guid>https://example.org/categories/%E6%9D%82%E8%B0%88/</guid>
+      <guid>https://t0hka.top/categories/%E6%9D%82%E8%B0%88/</guid>
       <description></description>
     </item>
     <item>
       <title>Decompile</title>
-      <link>https://example.org/categories/decompile/</link>
+      <link>https://t0hka.top/categories/decompile/</link>
       <pubDate>Mon, 25 Sep 2023 16:07:28 +0800</pubDate>
-      <guid>https://example.org/categories/decompile/</guid>
+      <guid>https://t0hka.top/categories/decompile/</guid>
       <description></description>
     </item>
   </channel>
