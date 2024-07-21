@@ -19,8 +19,8 @@
            "@id": "http:\/\/localhost:1313\/"
       },
       "articleSection" : "post",
-      "name" : "模板解析23事",
-      "headline" : "模板解析23事",
+      "name" : "从010 Editor到DSL",
+      "headline" : "从010 Editor到DSL",
       "description" : "最近工作需要，需要对Outlook MAPI协议的流量进行自动化分析，故探讨一下二进制模板解析\n模板解析介绍 用过010editor的都知道，在辅助分析二进制文件的时候它的用处很大 。\n其最为出色的功能便是二进制模板解析功能，它可以将文件解析为分层结构。\n模板解析实现 然而其内部到底是如何运作的呢？由于010editor是闭源的，我们可以参考参考它的兄弟Imhex的实现\n在阅读文档和源码之后，可以发现其构建了一种DSL(Domain Specific Language)，专门用于模板解析。在Imhex中，模板文件以.hexpat文件来进行存储，在对比了部分模板文件后，个人感觉Imhex的实现要比010Editor简洁不少。\n这个DSL语言融合了C\u002b\u002b和Rust的思想，看起来还是相当舒服的。\n我们把源代码下载下来研究一下：\ngit clone https:\/\/github.com\/WerWolv\/ImHex --recurse-submodules 观察代码可以找到调用点，可知解析返回结果是类AST结构，这也是符合图形化UI的显示的。\n\/\/ ImHex\/plugins\/builtin\/source\/content\/views\/view_pattern_editor.cpp void ViewPatternEditor::parsePattern(const std::string \u0026amp;code, prv::Provider *provider) { m_runningParsers \u002b= 1; ContentRegistry::PatternLanguage::configureRuntime(*m_editorRuntime, nullptr); \/\/ 调用点 const auto \u0026amp;ast = m_editorRuntime-\u0026gt;parseString(code, pl::api::Source::DefaultSource); auto \u0026amp;patternVariables = m_patternVariables.get(provider); auto oldPatternVariables = std::move(patternVariables); if (ast.has_value()) { for (auto \u0026amp;node : *ast) { if (const auto variableDecl = dynamic_cast\u0026lt;pl::core::ast::ASTNodeVariableDecl *\u0026gt;(node.get())) { const auto type = variableDecl-\u0026gt;getType().get(); if (type == nullptr) continue; const auto builtinType = dynamic_cast\u0026lt;pl::core::ast::ASTNodeBuiltinType *\u0026gt;(type-\u0026gt;getType().",
       "inLanguage" : "en-US",
       "author" : "",
@@ -35,8 +35,8 @@
       "keywords" : [  ]
   }
 </script>
-<title>模板解析23事</title>
-  <meta property="og:title" content="模板解析23事" />
+<title>从010 Editor到DSL</title>
+  <meta property="og:title" content="从010 Editor到DSL" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="最近工作需要，需要对Outlook MAPI协议的流量进行自动化分析，故探讨一下二进制模板解析
 模板解析介绍 用过010editor的都知道，在辅助分析二进制文件的时候它的用处很大 。
@@ -112,7 +112,7 @@ git clone https://github.com/WerWolv/ImHex --recurse-submodules 观察代码可�
 
         </div>
         <header class="post-header">
-          <h1 class="post-title">模板解析23事</h1>
+          <h1 class="post-title">从010 Editor到DSL</h1>
           
           <div class="row post-desc">
             <div class="col-xs-6">
