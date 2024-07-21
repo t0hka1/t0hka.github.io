@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="generator" content="Hugo 0.129.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="https://t0hka.top/post/2024-07-21-%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90/" />
-  <link rel="canonical" href="https://t0hka.top/post/2024-07-21-%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90/" /><link rel="alternate" type="application/atom+xml" href="https://t0hka.top/index.xml" title="Tohka">
+  <meta property="og:url" content="http://localhost:1313/post/2024-07-21-%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90/" />
+  <link rel="canonical" href="http://localhost:1313/post/2024-07-21-%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90/" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="Tohka">
 
   <script type="application/ld+json">
   {
@@ -16,12 +16,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https:\/\/t0hka.top\/"
+           "@id": "http:\/\/localhost:1313\/"
       },
       "articleSection" : "post",
       "name" : "模板解析23事",
       "headline" : "模板解析23事",
-      "description" : "最近工作需要，需要对Outlook协议的流量进行自动化分析，故探讨探讨二进制模板解析\n模板解析介绍 模板解析实现 010Editor应用 ",
+      "description" : "最近工作需要，需要对Outlook MAPI协议的流量进行自动化分析，故探讨一下二进制模板解析\n模板解析介绍 用过010editor的都知道，在辅助分析二进制文件的时候它的用处很大 。\n其最为出色的功能便是二进制模板解析功能，它可以将文件解析为分层结构。\n模板解析实现 然而其内部到底是如何运作的呢？由于010editor是闭源的，我们可以参考参考它的兄弟Imhex的实现\n在阅读文档和源码之后，可以发现其构建了一种DSL(Domain Specific Language)，专门用于模板解析。在Imhex中，模板文件以.hexpat文件来进行存储，在对比了部分模板文件后，个人感觉Imhex的实现要比010Editor简洁不少。\n这个DSL语言融合了C\u002b\u002b和Rust的思想，看起来还是相当舒服的。\n我们把源代码下载下来研究一下：\ngit clone https:\/\/github.com\/WerWolv\/ImHex --recurse-submodules 观察代码可以找到调用点，可知解析返回结果是类AST结构，这也是符合图形化UI的显示的。\n\/\/ ImHex\/plugins\/builtin\/source\/content\/views\/view_pattern_editor.cpp void ViewPatternEditor::parsePattern(const std::string \u0026amp;code, prv::Provider *provider) { m_runningParsers \u002b= 1; ContentRegistry::PatternLanguage::configureRuntime(*m_editorRuntime, nullptr); \/\/ 调用点 const auto \u0026amp;ast = m_editorRuntime-\u0026gt;parseString(code, pl::api::Source::DefaultSource); auto \u0026amp;patternVariables = m_patternVariables.get(provider); auto oldPatternVariables = std::move(patternVariables); if (ast.has_value()) { for (auto \u0026amp;node : *ast) { if (const auto variableDecl = dynamic_cast\u0026lt;pl::core::ast::ASTNodeVariableDecl *\u0026gt;(node.get())) { const auto type = variableDecl-\u0026gt;getType().get(); if (type == nullptr) continue; const auto builtinType = dynamic_cast\u0026lt;pl::core::ast::ASTNodeBuiltinType *\u0026gt;(type-\u0026gt;getType().",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -31,17 +31,31 @@
       "copyrightYear" : "2024",
       "datePublished": "2024-07-21 01:07:28 \u002b0800 CST",
       "dateModified" : "2024-07-21 01:07:28 \u002b0800 CST",
-      "url" : "https:\/\/t0hka.top\/post\/2024-07-21-%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90\/",
+      "url" : "http:\/\/localhost:1313\/post\/2024-07-21-%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90\/",
       "keywords" : [  ]
   }
 </script>
 <title>模板解析23事</title>
   <meta property="og:title" content="模板解析23事" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="最近工作需要，需要对Outlook协议的流量进行自动化分析，故探讨探讨二进制模板解析
-模板解析介绍 模板解析实现 010Editor应用 " />
-  <meta name="description" content="最近工作需要，需要对Outlook协议的流量进行自动化分析，故探讨探讨二进制模板解析
-模板解析介绍 模板解析实现 010Editor应用 " />
+  <meta property="og:description" content="最近工作需要，需要对Outlook MAPI协议的流量进行自动化分析，故探讨一下二进制模板解析
+模板解析介绍 用过010editor的都知道，在辅助分析二进制文件的时候它的用处很大 。
+其最为出色的功能便是二进制模板解析功能，它可以将文件解析为分层结构。
+模板解析实现 然而其内部到底是如何运作的呢？由于010editor是闭源的，我们可以参考参考它的兄弟Imhex的实现
+在阅读文档和源码之后，可以发现其构建了一种DSL(Domain Specific Language)，专门用于模板解析。在Imhex中，模板文件以.hexpat文件来进行存储，在对比了部分模板文件后，个人感觉Imhex的实现要比010Editor简洁不少。
+这个DSL语言融合了C&#43;&#43;和Rust的思想，看起来还是相当舒服的。
+我们把源代码下载下来研究一下：
+git clone https://github.com/WerWolv/ImHex --recurse-submodules 观察代码可以找到调用点，可知解析返回结果是类AST结构，这也是符合图形化UI的显示的。
+// ImHex/plugins/builtin/source/content/views/view_pattern_editor.cpp void ViewPatternEditor::parsePattern(const std::string &amp;amp;code, prv::Provider *provider) { m_runningParsers &#43;= 1; ContentRegistry::PatternLanguage::configureRuntime(*m_editorRuntime, nullptr); // 调用点 const auto &amp;amp;ast = m_editorRuntime-&amp;gt;parseString(code, pl::api::Source::DefaultSource); auto &amp;amp;patternVariables = m_patternVariables.get(provider); auto oldPatternVariables = std::move(patternVariables); if (ast.has_value()) { for (auto &amp;amp;node : *ast) { if (const auto variableDecl = dynamic_cast&amp;lt;pl::core::ast::ASTNodeVariableDecl *&amp;gt;(node.get())) { const auto type = variableDecl-&amp;gt;getType().get(); if (type == nullptr) continue; const auto builtinType = dynamic_cast&amp;lt;pl::core::ast::ASTNodeBuiltinType *&amp;gt;(type-&amp;gt;getType()." />
+  <meta name="description" content="最近工作需要，需要对Outlook MAPI协议的流量进行自动化分析，故探讨一下二进制模板解析
+模板解析介绍 用过010editor的都知道，在辅助分析二进制文件的时候它的用处很大 。
+其最为出色的功能便是二进制模板解析功能，它可以将文件解析为分层结构。
+模板解析实现 然而其内部到底是如何运作的呢？由于010editor是闭源的，我们可以参考参考它的兄弟Imhex的实现
+在阅读文档和源码之后，可以发现其构建了一种DSL(Domain Specific Language)，专门用于模板解析。在Imhex中，模板文件以.hexpat文件来进行存储，在对比了部分模板文件后，个人感觉Imhex的实现要比010Editor简洁不少。
+这个DSL语言融合了C&#43;&#43;和Rust的思想，看起来还是相当舒服的。
+我们把源代码下载下来研究一下：
+git clone https://github.com/WerWolv/ImHex --recurse-submodules 观察代码可以找到调用点，可知解析返回结果是类AST结构，这也是符合图形化UI的显示的。
+// ImHex/plugins/builtin/source/content/views/view_pattern_editor.cpp void ViewPatternEditor::parsePattern(const std::string &amp;amp;code, prv::Provider *provider) { m_runningParsers &#43;= 1; ContentRegistry::PatternLanguage::configureRuntime(*m_editorRuntime, nullptr); // 调用点 const auto &amp;amp;ast = m_editorRuntime-&amp;gt;parseString(code, pl::api::Source::DefaultSource); auto &amp;amp;patternVariables = m_patternVariables.get(provider); auto oldPatternVariables = std::move(patternVariables); if (ast.has_value()) { for (auto &amp;amp;node : *ast) { if (const auto variableDecl = dynamic_cast&amp;lt;pl::core::ast::ASTNodeVariableDecl *&amp;gt;(node.get())) { const auto type = variableDecl-&amp;gt;getType().get(); if (type == nullptr) continue; const auto builtinType = dynamic_cast&amp;lt;pl::core::ast::ASTNodeBuiltinType *&amp;gt;(type-&amp;gt;getType()." />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
@@ -117,12 +131,210 @@
 
         <div class="post-content markdown-body">
           
-          <p>最近工作需要，需要对Outlook协议的流量进行自动化分析，故探讨探讨二进制模板解析</p>
+          <p>最近工作需要，需要对Outlook MAPI协议的流量进行自动化分析，故探讨一下二进制模板解析</p>
 <h3 id="模板解析介绍">模板解析介绍</h3>
+<p>用过010editor的都知道，在辅助分析二进制文件的时候它的用处很大 。</p>
+<p>其最为出色的功能便是二进制模板解析功能，它可以将文件解析为分层结构。</p>
 <p><img src="assets/image-20240721015700216.png" alt="image-20240721015700216"></p>
 <h3 id="模板解析实现">模板解析实现</h3>
-<h3 id="010editor应用">010Editor应用</h3>
+<p>然而其内部到底是如何运作的呢？由于010editor是闭源的，我们可以参考参考它的兄弟<a href="https://github.com/WerWolv/ImHex">Imhex</a>的实现</p>
+<p>在阅读文档和源码之后，可以发现其构建了一种DSL(Domain Specific Language)，专门用于模板解析。在Imhex中，模板文件以.hexpat文件来进行存储，在对比了部分模板文件后，个人感觉Imhex的实现要比010Editor简洁不少。</p>
+<p>这个DSL语言融合了C++和Rust的思想，看起来还是相当舒服的。</p>
+<p><img src="assets/image-20240721155415240.png" alt="image-20240721155415240"></p>
+<p>我们把源代码下载下来研究一下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> git clone https://github.com/WerWolv/ImHex --recurse-submodules
+</span></span></code></pre></div><p>观察代码可以找到调用点，可知解析返回结果是类AST结构，这也是符合图形化UI的显示的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">// ImHex/plugins/builtin/source/content/views/view_pattern_editor.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> ViewPatternEditor<span style="color:#f92672">::</span>parsePattern(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string <span style="color:#f92672">&amp;</span>code, prv<span style="color:#f92672">::</span>Provider <span style="color:#f92672">*</span>provider) {
+</span></span><span style="display:flex;"><span>        m_runningParsers <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ContentRegistry<span style="color:#f92672">::</span>PatternLanguage<span style="color:#f92672">::</span>configureRuntime(<span style="color:#f92672">*</span>m_editorRuntime, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 调用点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>ast <span style="color:#f92672">=</span> m_editorRuntime<span style="color:#f92672">-&gt;</span>parseString(code, pl<span style="color:#f92672">::</span>api<span style="color:#f92672">::</span>Source<span style="color:#f92672">::</span>DefaultSource); 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>patternVariables <span style="color:#f92672">=</span> m_patternVariables.get(provider);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">auto</span> oldPatternVariables <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>move(patternVariables);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (ast.has_value()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>node : <span style="color:#f92672">*</span>ast) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> variableDecl <span style="color:#f92672">=</span> <span style="color:#66d9ef">dynamic_cast</span><span style="color:#f92672">&lt;</span>pl<span style="color:#f92672">::</span>core<span style="color:#f92672">::</span>ast<span style="color:#f92672">::</span>ASTNodeVariableDecl <span style="color:#f92672">*&gt;</span>(node.get())) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> type <span style="color:#f92672">=</span> variableDecl<span style="color:#f92672">-&gt;</span>getType().get();
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (type <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> builtinType <span style="color:#f92672">=</span> <span style="color:#66d9ef">dynamic_cast</span><span style="color:#f92672">&lt;</span>pl<span style="color:#f92672">::</span>core<span style="color:#f92672">::</span>ast<span style="color:#f92672">::</span>ASTNodeBuiltinType <span style="color:#f92672">*&gt;</span>(type<span style="color:#f92672">-&gt;</span>getType().get());
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (builtinType <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>)
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">const</span> PatternVariable variable <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>                        .inVariable  <span style="color:#f92672">=</span> variableDecl<span style="color:#f92672">-&gt;</span>isInVariable(),
+</span></span><span style="display:flex;"><span>                        .outVariable <span style="color:#f92672">=</span> variableDecl<span style="color:#f92672">-&gt;</span>isOutVariable(),
+</span></span><span style="display:flex;"><span>                        .type        <span style="color:#f92672">=</span> builtinType<span style="color:#f92672">-&gt;</span>getType(),
+</span></span><span style="display:flex;"><span>                        .value       <span style="color:#f92672">=</span> oldPatternVariables.contains(variableDecl<span style="color:#f92672">-&gt;</span>getName()) <span style="color:#f92672">?</span> oldPatternVariables[variableDecl<span style="color:#f92672">-&gt;</span>getName()].value : pl<span style="color:#f92672">::</span>core<span style="color:#f92672">::</span>Token<span style="color:#f92672">::</span>Literal()
+</span></span><span style="display:flex;"><span>                    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (variable.inVariable <span style="color:#f92672">||</span> variable.outVariable) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>patternVariables.contains(variableDecl<span style="color:#f92672">-&gt;</span>getName()))
+</span></span><span style="display:flex;"><span>                            patternVariables[variableDecl<span style="color:#f92672">-&gt;</span>getName()] <span style="color:#f92672">=</span> variable;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            patternVariables <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>move(oldPatternVariables);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        m_runningParsers <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>模板自身解析</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// ImHex/lib/external/pattern_language/lib/source/pl/pattern_language.cpp   
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>std<span style="color:#f92672">::</span>optional<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>core<span style="color:#f92672">::</span>ast<span style="color:#f92672">::</span>ASTNode<span style="color:#f92672">&gt;&gt;&gt;</span> PatternLanguage<span style="color:#f92672">::</span>parseString(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string <span style="color:#f92672">&amp;</span>code, <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string <span style="color:#f92672">&amp;</span>source) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 分词器(lexer)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    	<span style="color:#66d9ef">auto</span> tokens <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>preprocessString(code, source);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>tokens.has_value() <span style="color:#f92672">||</span> tokens<span style="color:#f92672">-&gt;</span>empty())
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>nullopt;
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 解析器(parser)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">auto</span> [ast, parserErrors] <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_internals.parser<span style="color:#f92672">-&gt;</span>parse(tokens.value());
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>parserErrors.empty()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_compileErrors.insert(m_compileErrors.end(), parserErrors.begin(), parserErrors.end());
+</span></span><span style="display:flex;"><span>            parserErrors.clear();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_internals.preprocessor<span style="color:#f92672">-&gt;</span>setOutput(tokens.value());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>ast.has_value())
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>nullopt;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (ast<span style="color:#f92672">-&gt;</span>empty())
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> ast;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">auto</span> [validated, validatorErrors] <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_internals.validator<span style="color:#f92672">-&gt;</span>validate(ast.value());
+</span></span><span style="display:flex;"><span>        wolv<span style="color:#f92672">::</span>util<span style="color:#f92672">::</span>unused(validated);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>validatorErrors.empty()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_compileErrors.insert(m_compileErrors.end(), validatorErrors.begin(), validatorErrors.end());
+</span></span><span style="display:flex;"><span>            validatorErrors.clear();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_internals.preprocessor<span style="color:#f92672">-&gt;</span>setErrors(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_compileErrors);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (ast<span style="color:#f92672">-&gt;</span>empty() <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>ast.has_value())
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>nullopt;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_currAST <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>move(<span style="color:#f92672">*</span>ast);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_currAST;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// 设置源        
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Include baseAddress as a copy to prevent it from going out of scope in the lambda
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        runtime.setDataSource(baseAddress, inputFile.getSize(), [<span style="color:#f92672">&amp;</span>inputFile, baseAddress](u64 address, <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>buffer, size_t size) {
+</span></span><span style="display:flex;"><span>            inputFile.seek(address <span style="color:#f92672">-</span> baseAddress);
+</span></span><span style="display:flex;"><span>            inputFile.readBuffer(<span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>u8<span style="color:#f92672">*&gt;</span>(buffer), size);
+</span></span><span style="display:flex;"><span>        });
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CPP" data-lang="CPP"><span style="display:flex;"><span><span style="color:#75715e">//  核心解析模块    
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">bool</span> PatternLanguage<span style="color:#f92672">::</span>executeString(std<span style="color:#f92672">::</span>string code, <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> source, <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>map<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string, core<span style="color:#f92672">::</span>Token<span style="color:#f92672">::</span>Literal<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>envVars, <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>map<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string, core<span style="color:#f92672">::</span>Token<span style="color:#f92672">::</span>Literal<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>inVariables, <span style="color:#66d9ef">bool</span> checkResult) {
+</span></span><span style="display:flex;"><span>	   	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> startTime <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>chrono<span style="color:#f92672">::</span>high_resolution_clock<span style="color:#f92672">::</span>now();
+</span></span><span style="display:flex;"><span>        ON_SCOPE_EXIT {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> endTime <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>chrono<span style="color:#f92672">::</span>high_resolution_clock<span style="color:#f92672">::</span>now();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_runningTime <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>chrono<span style="color:#f92672">::</span>duration_cast<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>chrono<span style="color:#f92672">::</span>duration<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;&gt;</span>(endTime <span style="color:#f92672">-</span> startTime).count();
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        code <span style="color:#f92672">=</span> wolv<span style="color:#f92672">::</span>util<span style="color:#f92672">::</span>replaceStrings(code, <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        code <span style="color:#f92672">=</span> wolv<span style="color:#f92672">::</span>util<span style="color:#f92672">::</span>replaceStrings(code, <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34;    &#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>evaluator <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_internals.evaluator;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_running <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_aborted <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_runId <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        ON_SCOPE_EXIT { <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_running <span style="color:#f92672">=</span> false; };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ON_SCOPE_EXIT {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>error: <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_compileErrors) {
+</span></span><span style="display:flex;"><span>                evaluator<span style="color:#f92672">-&gt;</span>getConsole().log(core<span style="color:#f92672">::</span>LogConsole<span style="color:#f92672">::</span>Level<span style="color:#f92672">::</span>Error, error.format());
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_currError.has_value()) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>error <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_currError.value();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                evaluator<span style="color:#f92672">-&gt;</span>getConsole().log(core<span style="color:#f92672">::</span>LogConsole<span style="color:#f92672">::</span>Level<span style="color:#f92672">::</span>Error, error.message);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>cleanupCallback : <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_cleanupCallbacks)
+</span></span><span style="display:flex;"><span>                cleanupCallback(<span style="color:#f92672">*</span><span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        evaluator<span style="color:#f92672">-&gt;</span>setInVariables(inVariables);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>[name, value] <span style="color:#f92672">:</span> envVars)
+</span></span><span style="display:flex;"><span>            evaluator<span style="color:#f92672">-&gt;</span>setEnvVariable(name, value);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">auto</span> ast <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>parseString(code, source);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>ast.has_value())
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// do not continue execution if there are any compile errors
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_compileErrors.empty())
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_currAST <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>move(<span style="color:#f92672">*</span>ast);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        evaluator<span style="color:#f92672">-&gt;</span>setReadOffset(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_startAddress.value_or(evaluator<span style="color:#f92672">-&gt;</span>getDataBaseAddress()));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>evaluator<span style="color:#f92672">-&gt;</span>evaluate(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_currAST)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>console <span style="color:#f92672">=</span> evaluator<span style="color:#f92672">-&gt;</span>getConsole();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_currError <span style="color:#f92672">=</span> console.getLastHardError();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            console.log(core<span style="color:#f92672">::</span>LogConsole<span style="color:#f92672">::</span>Level<span style="color:#f92672">::</span>Error, <span style="color:#e6db74">&#34;[ Stack Trace ]&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>callStack <span style="color:#f92672">=</span> evaluator<span style="color:#f92672">-&gt;</span>getCallStack();
+</span></span><span style="display:flex;"><span>            u32 lastLine <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>entry : callStack <span style="color:#f92672">|</span> std<span style="color:#f92672">::</span>views<span style="color:#f92672">::</span>reverse) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (entry <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">auto</span> location <span style="color:#f92672">=</span> entry<span style="color:#f92672">-&gt;</span>getLocation();
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (lastLine <span style="color:#f92672">==</span> location.line)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                console.log(core<span style="color:#f92672">::</span>LogConsole<span style="color:#f92672">::</span>Level<span style="color:#f92672">::</span>Error, core<span style="color:#f92672">::</span>err<span style="color:#f92672">::</span>impl<span style="color:#f92672">::</span>formatLocation(location));
+</span></span><span style="display:flex;"><span>                console.log(core<span style="color:#f92672">::</span>LogConsole<span style="color:#f92672">::</span>Level<span style="color:#f92672">::</span>Error, core<span style="color:#f92672">::</span>err<span style="color:#f92672">::</span>impl<span style="color:#f92672">::</span>formatLines(location));
+</span></span><span style="display:flex;"><span>                lastLine <span style="color:#f92672">=</span> location.line;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            console.log(core<span style="color:#f92672">::</span>LogConsole<span style="color:#f92672">::</span>Level<span style="color:#f92672">::</span>Error, <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">auto</span> returnCode <span style="color:#f92672">=</span> evaluator<span style="color:#f92672">-&gt;</span>getMainResult().value_or(<span style="color:#ae81ff">0</span>).toSigned();
+</span></span><span style="display:flex;"><span>        evaluator<span style="color:#f92672">-&gt;</span>getConsole().log(core<span style="color:#f92672">::</span>LogConsole<span style="color:#f92672">::</span>Level<span style="color:#f92672">::</span>Info, fmt<span style="color:#f92672">::</span>format(<span style="color:#e6db74">&#34;Pattern exited with code: {}&#34;</span>, returnCode));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (checkResult <span style="color:#f92672">&amp;&amp;</span> returnCode <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_currError <span style="color:#f92672">=</span> core<span style="color:#f92672">::</span>err<span style="color:#f92672">::</span>PatternLanguageError(core<span style="color:#f92672">::</span>err<span style="color:#f92672">::</span>E0009.format(fmt<span style="color:#f92672">::</span>format(<span style="color:#e6db74">&#34;Pattern exited with non-zero result: {}&#34;</span>, returnCode)), <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>pattern : evaluator<span style="color:#f92672">-&gt;</span>getPatterns())
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_patterns[pattern<span style="color:#f92672">-&gt;</span>getSection()].push_back(pattern);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_patterns.erase(ptrn<span style="color:#f92672">::</span>Pattern<span style="color:#f92672">::</span>HeapSectionId);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>flattenPatterns();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_aborted) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>reset();
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_patternsValid <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><pre tabindex="0"><code> p *(ast.value()._M_impl._M_start)@(ast.value().size())
+ 
+ p (ast.value()._M_impl._M_start)[0]
+</code></pre><pre tabindex="0"><code>p *(*(ast.value()._M_impl._M_start)@01)._M_ptr
+</code></pre><pre tabindex="0"><code>b /home/t0hka/Desktop/TMP/PatternLanguage/lib/source/pl/pattern_language.cpp:164
+b /home/t0hka/Desktop/TMP/PatternLanguage/lib/source/pl/core/evaluator.cpp:918
 
+
+set args format --input tests/integration/test_data --pattern tests/integration/test.hexpat --output out.json
+</code></pre>
         </div>
 
         <div class="row middle-xs">

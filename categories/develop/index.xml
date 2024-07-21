@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Develop on Tohka</title>
-    <link>https://t0hka.top/categories/develop/</link>
+    <link>http://localhost:1313/categories/develop/</link>
     <description>Recent content in Develop on Tohka</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 21 Jul 2024 01:07:28 +0800</lastBuildDate>
-    <atom:link href="https://t0hka.top/categories/develop/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/develop/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>模板解析23事</title>
-      <link>https://t0hka.top/post/2024-07-21-%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90/</link>
+      <link>http://localhost:1313/post/2024-07-21-%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Sun, 21 Jul 2024 01:07:28 +0800</pubDate>
-      <guid>https://t0hka.top/post/2024-07-21-%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90/</guid>
-      <description>最近工作需要，需要对Outlook协议的流量进行自动化分析，故探讨探讨二进制模板解析&#xA;模板解析介绍 模板解析实现 010Editor应用 </description>
+      <guid>http://localhost:1313/post/2024-07-21-%E6%A8%A1%E6%9D%BF%E8%A7%A3%E6%9E%90/</guid>
+      <description>最近工作需要，需要对Outlook MAPI协议的流量进行自动化分析，故探讨一下二进制模板解析&#xA;模板解析介绍 用过010editor的都知道，在辅助分析二进制文件的时候它的用处很大 。&#xA;其最为出色的功能便是二进制模板解析功能，它可以将文件解析为分层结构。&#xA;模板解析实现 然而其内部到底是如何运作的呢？由于010editor是闭源的，我们可以参考参考它的兄弟Imhex的实现&#xA;在阅读文档和源码之后，可以发现其构建了一种DSL(Domain Specific Language)，专门用于模板解析。&#xA;在Imhex中模板文件以.hexpat文件来进行存储，在对比了部分模板文件后，个人感觉Imhex的实现要比010Editor简洁不少。DSL语言融合了C++和Rust的思想，看起来还是相当舒服的&#xA;010Editor应用 </description>
     </item>
   </channel>
 </rss>
